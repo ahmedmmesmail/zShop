@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "289443051315",
+    "project_id": "zshop-amme",
+    "storage_bucket": "zshop-amme.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289443051315:android:1f2eb8a3590b3de8c83046",
+        "android_client_info": {
+          "package_name": "com.amme.zshop.zshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9NKQGXHdd6p2c1X6MuBLvTqyLYugTDw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
