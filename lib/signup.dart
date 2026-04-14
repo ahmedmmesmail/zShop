@@ -78,9 +78,13 @@ class _SignUpPageState extends State<SignUpPage> {
             Center(
               child: Container(
                 alignment: Alignment.center,
+                child: Image.asset(
+                  'assets/images/banner.png',
+                  height: 180,
+                ),
               ),
             ),
-            const SizedBox(height: 60),
+            const SizedBox(height: 30),
 
             Expanded(
               child: Container(

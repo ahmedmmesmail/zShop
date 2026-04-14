@@ -89,17 +89,19 @@ class _LoginPageState extends State<LoginPage> {
             Center(
               child: Container(
                 alignment: Alignment.center,
-                child: const Text(
-                  'Welcome back 👋',
-                  style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                child:
+                Center(
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                        'assets/images/banner.png',
+                      height: 180,
+                    ),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 60),
+            const SizedBox(height: 30),
 
             Expanded(
               child: Container(
@@ -113,8 +115,13 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
-
+                    Text(
+                      'Welcome back 👋',
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     const SizedBox(height: 5),
 
                     const Text(
@@ -167,9 +174,23 @@ class _LoginPageState extends State<LoginPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text(
+                        TextButton(
+                          onPressed: () async {
+                            var email = emailController.text;
+                            if (!email.contains("@") || !email.contains(".") || email.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("Invalid email format")),
+                              );
+                            }
+                            else {
+                              await FirebaseAuth.instance
+                                  .sendPasswordResetEmail(
+                                  email: email);
+                            }
+                          }, child: Text(
                           "Forgot password?",
                           style: TextStyle(color: Color(0xFFDE5E5E),),
+                        ),
                         ),
                       ],
                     ),
