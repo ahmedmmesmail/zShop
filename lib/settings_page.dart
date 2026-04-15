@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zShop/AboutUsPage.dart';
+import 'package:zShop/about_us_page.dart';
+import 'package:zShop/main.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -55,6 +56,13 @@ class SettingsPage extends StatelessWidget {
                 color: Colors.red,
                 onTap: () async {
                   await FirebaseAuth.instance.signOut();
+
+                  if (!context.mounted) return;
+
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                        (route) => false,
+                  );
                 },
               ),
             ],

@@ -16,7 +16,7 @@ class Product {
       id: json['id'],
       title: json['title'],
       price: (json['price'] as num).toDouble(),
-      image: json['thumbnail'], // مهم جدًا
+      image: json['thumbnail'],
     );
   }
 }

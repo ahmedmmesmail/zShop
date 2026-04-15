@@ -39,7 +39,6 @@ class _CartPageState extends State<CartPage> {
           return Stack(
             children: [
 
-              /// 🧺 Cart List
               Padding(
                 padding: const EdgeInsets.only(bottom: 90),
                 child: ListView.builder(
@@ -86,7 +85,6 @@ class _CartPageState extends State<CartPage> {
                 ),
               ),
 
-              /// 💰 Bottom Bar
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(

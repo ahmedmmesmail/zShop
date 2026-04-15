@@ -104,7 +104,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         style: GoogleFonts.poppins(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
-                          // color: Colors.white,
                         ),
                       ),
 

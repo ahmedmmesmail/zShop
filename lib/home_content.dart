@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zShop/CategoryPage.dart';
-import 'package:zShop/ItemPage.dart';
+import 'package:zShop/all_categories_page.dart';
+import 'package:zShop/category_page.dart';
+import 'package:zShop/item_page.dart';
 import 'package:zShop/models/category.dart';
 import 'package:zShop/models/product.dart';
 
@@ -24,13 +25,12 @@ class HomeContent extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(left: 12, top: 8),
+      padding: const EdgeInsets.only(left: 12),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
-            /// ================= CATEGORIES =================
+            const SizedBox(height: 10),
             Row(
               children: [
                 Text(
@@ -40,8 +40,19 @@ class HomeContent extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Spacer(),
-                const Icon(Icons.arrow_forward_ios_rounded),
+                Spacer(),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            AllCategoriesPage(categories: categories),
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.arrow_forward_ios_rounded),
+                ),
               ],
             ),
 
@@ -82,7 +93,6 @@ class HomeContent extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            /// ================= PRODUCTS =================
             Text(
               "Featured products",
               style: GoogleFonts.poppins(
@@ -107,14 +117,10 @@ class HomeContent extends StatelessWidget {
                 final product = products[index];
 
                 return Material(
-                  color: Colors.transparent,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
                   clipBehavior: Clip.antiAlias,
                   child: InkWell(
-                    borderRadius: BorderRadius.circular(15),
-                    splashColor: Colors.red.withOpacity(0.1),
-                    highlightColor: Colors.red.withOpacity(0.05),
-
                     onTap: () {
                       Navigator.push(
                         context,
@@ -129,30 +135,23 @@ class HomeContent extends StatelessWidget {
                         ),
                       );
                     },
-
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
                         borderRadius: BorderRadius.circular(15),
                         boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 5,
-                          ),
+                          BoxShadow(color: Colors.black12, blurRadius: 5),
                         ],
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
-                          /// 🔥 IMAGE
                           Expanded(
-                            child: Hero(
-                              tag: product.image,
-                              child: ClipRRect(
-                                borderRadius: const BorderRadius.vertical(
-                                  top: Radius.circular(15),
-                                ),
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(15),
+                              ),
+                              child: Hero(
+                                tag: product.image,
                                 child: Image.network(
                                   product.image,
                                   width: double.infinity,
@@ -161,8 +160,6 @@ class HomeContent extends StatelessWidget {
                               ),
                             ),
                           ),
-
-                          /// TITLE + PRICE
                           Padding(
                             padding: const EdgeInsets.all(8),
                             child: Column(
@@ -172,17 +169,9 @@ class HomeContent extends StatelessWidget {
                                   product.title,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.bold,
-                                  ),
                                 ),
                                 const SizedBox(height: 5),
-                                Text(
-                                  "\$${product.price}",
-                                  style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                                Text("\$${product.price}"),
                               ],
                             ),
                           ),

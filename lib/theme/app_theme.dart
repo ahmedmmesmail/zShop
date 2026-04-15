@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  /// 🎯 الألوان الأساسية
   static const Color primaryColor = Color(0xFFDE5E5E);
   static const Color textPrimary = Color(0xFF222222);
   static const Color textSecondary = Color(0xFF777777);
@@ -16,11 +15,10 @@ class AppTheme {
       brightness: Brightness.light,
     ),
 
-    /// 🔘 BUTTONS
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: primaryColor,   // لون الزرار
-        foregroundColor: buttonText,     // لون النص داخل الزرار
+        backgroundColor: primaryColor,
+        foregroundColor: buttonText,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -28,17 +26,16 @@ class AppTheme {
       ),
     ),
 
-    /// ✏️ TEXTS
     textTheme: TextTheme(
       headlineSmall: GoogleFonts.poppins(
         fontSize: 22,
         fontWeight: FontWeight.bold,
-        color: textPrimary, // لون العناوين
+        color: textPrimary,
       ),
 
       bodyMedium: GoogleFonts.poppins(
         fontSize: 14,
-        color: textSecondary, // لون النص العادي
+        color: textSecondary,
       ),
     ),
   );

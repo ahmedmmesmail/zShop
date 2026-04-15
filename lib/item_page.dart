@@ -7,10 +7,7 @@ import 'package:zShop/cart_service.dart';
 class ItemPage extends StatefulWidget {
   final Product product;
 
-  const ItemPage({
-    super.key,
-    required this.product,
-  });
+  const ItemPage({super.key, required this.product});
 
   @override
   State<ItemPage> createState() => _ItemPageState();
@@ -30,6 +27,7 @@ class _ItemPageState extends State<ItemPage> {
           style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
         ),
         backgroundColor: const Color(0xFFDE5E5E),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
 
       body: SingleChildScrollView(
@@ -37,15 +35,13 @@ class _ItemPageState extends State<ItemPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                bottom: Radius.circular(20),
-              ),
+            Hero(
+              tag: product.image,
               child: Image.network(
                 product.image,
                 width: double.infinity,
                 height: 250,
-                fit: BoxFit.cover,
+                fit: BoxFit.fitHeight,
               ),
             ),
 
@@ -66,7 +62,6 @@ class _ItemPageState extends State<ItemPage> {
                       ),
                     ),
                   ),
-
                   Text(
                     "\$${product.price}",
                     style: GoogleFonts.poppins(
@@ -80,34 +75,27 @@ class _ItemPageState extends State<ItemPage> {
 
             const SizedBox(height: 20),
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        if (count > 1) count--;
-                      });
-                    },
-                    icon: const Icon(Icons.remove),
-                  ),
-
-                  Text(
-                    "$count",
-                    style: GoogleFonts.poppins(fontSize: 16),
-                  ),
-
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        count++;
-                      });
-                    },
-                    icon: const Icon(Icons.add),
-                  ),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      if (count > 1) count--;
+                    });
+                  },
+                  icon: const Icon(Icons.remove),
+                ),
+                Text("$count"),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      count++;
+                    });
+                  },
+                  icon: const Icon(Icons.add),
+                ),
+              ],
             ),
 
             const SizedBox(height: 30),
@@ -139,8 +127,8 @@ class _ItemPageState extends State<ItemPage> {
                     });
 
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: const Text("Added to cart 🛒"),
+                      const SnackBar(
+                        content: Text("Added to cart 🛒"),
                         backgroundColor: Colors.green,
                       ),
                     );

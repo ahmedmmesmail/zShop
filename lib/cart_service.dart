@@ -8,7 +8,6 @@ class CartService {
 
   CartService._internal();
 
-  /// 🔥 ده أهم تغيير
   ValueNotifier<List<CartItem>> items = ValueNotifier([]);
 
   void addToCart(CartItem item) {

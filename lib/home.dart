@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:zShop/CartPage.dart';
-import 'package:zShop/HomeContent.dart';
-import 'package:zShop/SettingsPage.dart';
+import 'package:zShop/cart_page.dart';
+import 'package:zShop/home_content.dart';
+import 'package:zShop/settings_page.dart';
 import 'package:zShop/models/category.dart';
 import 'package:zShop/models/product.dart';
 
