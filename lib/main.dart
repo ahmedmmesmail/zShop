@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:zShop/home.dart';
-import 'package:zShop/signup.dart';
+import 'package:zShop/SignupPage.dart';
 import 'theme/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -117,16 +118,16 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Text(
                       'Welcome back 👋',
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 5),
 
-                    const Text(
+                    Text(
                       'Sign in to your account',
-                      style: TextStyle(color: Colors.grey),
+                      style: GoogleFonts.poppins(color: Colors.grey),
                     ),
 
                     const SizedBox(height: 25),
@@ -189,7 +190,7 @@ class _LoginPageState extends State<LoginPage> {
                             }
                           }, child: Text(
                           "Forgot password?",
-                          style: TextStyle(color: Color(0xFFDE5E5E),),
+                          style: GoogleFonts.poppins(color: Color(0xFFDE5E5E),),
                         ),
                         ),
                       ],
@@ -208,9 +209,9 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         onPressed: loginUser,
-                        child: const Text(
+                        child: Text(
                           "Login",
-                          style: TextStyle(fontSize: 16),
+                          style: GoogleFonts.poppins(fontSize: 16),
                         ),
                       ),
                     ),
@@ -233,7 +234,7 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             child: Text(
                               "Sign Up",
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 color: Color(0xFFDE5E5E),
                                 fontWeight: FontWeight.bold,
                               ),
@@ -286,6 +287,11 @@ class _LoginPageState extends State<LoginPage> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passController.text.trim(),
+      );
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+            (route) => false,
       );
 
     } on FirebaseAuthException catch (e) {

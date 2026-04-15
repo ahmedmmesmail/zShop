@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zShop/CartItem.dart';
+import 'package:zShop/models/CartItem.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -35,8 +35,11 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: cartItems.isEmpty
-          ? const Center(
-        child: Text("Cart is empty 🛒"),
+          ?  Center(
+        child: Text(
+            "Cart is empty 🛒",
+            style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
+        ),
       )
           : Column(
         children: [
@@ -67,16 +70,14 @@ class _CartPageState extends State<CartPage> {
 
                     title: Text(
                       item.title,
+                      style: GoogleFonts.poppins(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
 
                     subtitle: Text(
                       "\$${item.price}",
-                      style: const TextStyle(
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold, color: Colors.green),
                     ),
 
                     trailing: Row(
@@ -93,7 +94,10 @@ class _CartPageState extends State<CartPage> {
                           icon: const Icon(Icons.remove),
                         ),
 
-                        Text("${item.quantity}"),
+                        Text(
+                          "${item.quantity}",
+                          style: GoogleFonts.poppins(),
+                        ),
 
                         IconButton(
                           onPressed: () {
@@ -153,9 +157,9 @@ class _CartPageState extends State<CartPage> {
                       padding: const EdgeInsets.all(15),
                     ),
                     onPressed: () {},
-                    child: const Text(
+                    child: Text(
                       "Checkout",
-                      style: TextStyle(color: Colors.white),
+                      style: GoogleFonts.poppins(color: Colors.white),
                     ),
                   ),
                 )

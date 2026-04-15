@@ -4,11 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:zShop/CartPage.dart';
-import 'package:zShop/CategoryPage.dart';
 import 'package:zShop/HomeContent.dart';
-
-import 'package:zShop/product.dart';
-import 'package:zShop/category.dart';
+import 'package:zShop/SettingsPage.dart';
+import 'package:zShop/models/category.dart';
+import 'package:zShop/models/product.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -144,13 +143,11 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: Icon(Icons.settings_rounded, color: Colors.white),
-            onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-
-              // بعد تسجيل الخروج ارجع لشاشة login
-              Navigator.pushReplacementNamed(context, '/login');
-            },
-
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => SettingsPage())
+              );
+            }
           ),
         ],
       ),
@@ -175,6 +172,7 @@ class _HomePageState extends State<HomePage> {
         selectedItemColor: Colors.white,
         unselectedItemColor: Color(0xFF5E5E5E),
         type: BottomNavigationBarType.fixed,
+        selectedLabelStyle: GoogleFonts.poppins(fontSize: 15, color: Colors.white),
         showSelectedLabels: true,
         showUnselectedLabels: false,
         backgroundColor: Color(0xFFDE5E5E),

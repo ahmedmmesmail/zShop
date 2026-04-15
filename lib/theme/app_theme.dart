@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   /// 🎯 الألوان الأساسية
@@ -28,14 +29,14 @@ class AppTheme {
     ),
 
     /// ✏️ TEXTS
-    textTheme: const TextTheme(
-      headlineSmall: TextStyle(
+    textTheme: TextTheme(
+      headlineSmall: GoogleFonts.poppins(
         fontSize: 22,
         fontWeight: FontWeight.bold,
         color: textPrimary, // لون العناوين
       ),
 
-      bodyMedium: TextStyle(
+      bodyMedium: GoogleFonts.poppins(
         fontSize: 14,
         color: textSecondary, // لون النص العادي
       ),

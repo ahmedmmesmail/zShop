@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:zShop/models/product.dart';
 
-import 'package:zShop/product.dart';
 
 class CategoryPage extends StatefulWidget {
   final String categoryKey;
@@ -49,7 +49,6 @@ class _CategoryPageState extends State<CategoryPage> {
         setState(() => isLoading = false);
       }
     } catch (e) {
-      print("ERROR: $e");
       setState(() => isLoading = false);
     }
   }
@@ -105,8 +104,12 @@ class _CategoryPageState extends State<CategoryPage> {
                         product.title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.poppins(),
                       ),
-                      Text("\$${product.price}"),
+                      Text(
+                          "\$${product.price}",
+                        style: GoogleFonts.poppins(),
+                      ),
                     ],
                   ),
                 ),

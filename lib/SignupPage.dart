@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:zShop/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -98,9 +99,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      const Text(
+                      Text(
                         'Welcome to zShop 👋',
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
                           // color: Colors.white,
@@ -109,9 +110,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
                       const SizedBox(height: 15),
 
-                      const Text(
+                      Text(
                         'Register your account',
-                        style: TextStyle(color: Colors.grey),
+                        style: GoogleFonts.poppins(color: Colors.grey),
                       ),
 
                       const SizedBox(height: 25),
@@ -205,9 +206,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                     strokeWidth: 2,
                                   ),
                                 )
-                              : const Text(
+                              : Text(
                                   "Sign Up",
-                                  style: TextStyle(fontSize: 16),
+                                  style: GoogleFonts.poppins(fontSize: 16),
                                 ),
                         ),
                       ),
@@ -230,7 +231,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               },
                               child: Text(
                                 "Login",
-                                style: TextStyle(
+                                style: GoogleFonts.poppins(
                                   color: Color(0xFFDE5E5E),
                                   fontWeight: FontWeight.bold,
                                 ),
