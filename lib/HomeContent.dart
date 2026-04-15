@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zShop/CategoryPage.dart';
+import 'package:zShop/ItemPage.dart';
 import 'package:zShop/models/category.dart';
 import 'package:zShop/models/product.dart';
 
@@ -29,6 +30,7 @@ class HomeContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
+            /// ================= CATEGORIES =================
             Row(
               children: [
                 Text(
@@ -80,6 +82,7 @@ class HomeContent extends StatelessWidget {
 
             const SizedBox(height: 10),
 
+            /// ================= PRODUCTS =================
             Text(
               "Featured products",
               style: GoogleFonts.poppins(
@@ -90,80 +93,106 @@ class HomeContent extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            /// Grid
-            Padding(
-                padding: EdgeInsetsGeometry.only(right: 12),
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: products.length,
-                gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.7,
-                ),
-                itemBuilder: (context, index) {
-                  final product = products[index];
-
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 5,
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: ClipRRect(
-                            borderRadius: const BorderRadius.vertical(
-                              top: Radius.circular(15),
-                            ),
-                            child: Image.network(
-                              product.image,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                product.title,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                "\$${product.price}",
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: products.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio: 0.7,
               ),
-            ),
+              itemBuilder: (context, index) {
+                final product = products[index];
 
+                return Material(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(15),
+                  clipBehavior: Clip.antiAlias,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(15),
+                    splashColor: Colors.red.withOpacity(0.1),
+                    highlightColor: Colors.red.withOpacity(0.05),
+
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(milliseconds: 400),
+                          pageBuilder: (_, animation, __) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: ItemPage(product: product),
+                            );
+                          },
+                        ),
+                      );
+                    },
+
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 5,
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+
+                          /// 🔥 IMAGE
+                          Expanded(
+                            child: Hero(
+                              tag: product.image,
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.vertical(
+                                  top: Radius.circular(15),
+                                ),
+                                child: Image.network(
+                                  product.image,
+                                  width: double.infinity,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          /// TITLE + PRICE
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  product.title,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  "\$${product.price}",
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
