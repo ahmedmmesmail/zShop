@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -57,8 +58,14 @@ class _CategoryPageState extends State<CategoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
+        ),
         backgroundColor: const Color(0xFFDE5E5E),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        )
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
